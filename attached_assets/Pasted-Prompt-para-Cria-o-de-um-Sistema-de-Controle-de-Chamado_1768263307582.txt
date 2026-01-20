@@ -1,0 +1,125 @@
+Prompt para Criação de um Sistema de Controle de Chamados (Help Desk / Service Desk)
+
+Contexto:
+Você é um arquiteto de software sênior especializado em sistemas de atendimento ao cliente, ITSM e automação com IA. Seu objetivo é projetar um sistema de controle de chamados inovador, simples de usar, altamente flexível e com custo previsível, superando as limitações de ferramentas tradicionais como Zendesk, Freshdesk e similares.
+
+🎯 Objetivo do Sistema
+
+Criar uma plataforma de controle de chamados que:
+
+Seja fácil de configurar, sem necessidade de conhecimento técnico avançado
+
+Ofereça omnichannel real, preservando contexto entre canais
+
+Utilize IA confiável, funcional mesmo com dados imperfeitos
+
+Possua workflows totalmente flexíveis, adaptáveis ao negócio
+
+Tenha preços previsíveis e escaláveis
+
+Gere redução real de tickets repetitivos via automação e autoatendimento inteligente
+
+🧩 Funcionalidades Essenciais
+1. Gestão de Chamados (Base)
+
+Abertura, categorização automática e priorização de chamados
+
+Definição e controle de SLA e OLA
+
+Histórico completo e rastreável de interações
+
+Atribuição inteligente para agentes ou filas
+
+Portal do cliente com acompanhamento em tempo real
+
+Base de conhecimento integrada
+
+2. Omnichannel Verdadeiro
+
+Centralização de canais: Email, Chat, WhatsApp (API oficial), telefone e formulário
+
+Preservação automática de contexto ao trocar de canal
+
+Histórico único por cliente, não por canal
+
+Preferências e perfil do cliente visíveis ao agente
+
+3. Automação e Workflows Flexíveis
+
+Editor visual (drag-and-drop) para criação de workflows sem código
+
+Regras dinâmicas baseadas em tipo de chamado, urgência, cliente ou horário
+
+Encaminhamento automático para o agente mais qualificado
+
+Modularidade: ativar apenas os recursos necessários
+
+4. Inteligência Artificial Confiável
+
+IA que funcione mesmo com base de conhecimento incompleta
+
+Resumo automático de tickets longos
+
+Sugestão de respostas e soluções baseadas em histórico real
+
+Detecção de tickets recorrentes e problemas críticos
+
+Modo de simulação: testar IA com dados históricos antes de ativar em produção
+
+Geração automática de artigos a partir de soluções resolvidas
+
+5. Autoatendimento que Resolve
+
+Chatbot com compreensão contextual real (não FAQ estático)
+
+Sugestão proativa de artigos antes da abertura do chamado
+
+Auto-resolução mensurável (meta de redução mínima de 15% dos tickets)
+
+Base de conhecimento viva e autoatualizável
+
+6. Colaboração Interna
+
+Comentários internos, menções e compartilhamento entre áreas
+
+Visibilidade entre departamentos (TI, RH, Financeiro, etc.)
+
+Evitar retrabalho e perda de conhecimento
+
+7. Analytics e Gestão
+
+Dashboards em tempo real desde o plano básico
+
+KPIs operacionais, de qualidade e preditivos
+
+Relatórios personalizáveis sem paywall de plano enterprise
+
+Insights acionáveis para melhoria contínua
+
+8. Mobile First
+
+Aplicativos nativos (iOS e Android)
+
+100% das funcionalidades disponíveis no mobile
+
+Sincronização em tempo real
+
+Atendimento completo em movimento
+
+9. Integrações
+
+APIs robustas e bem documentadas
+
+Integrações nativas com ERP, CRM e sistemas legados
+
+Orquestração de dados entre sistemas (não apenas visual)
+
+10. Modelo de Preço
+
+Preço por usuário com crescimento previsível
+
+Sem cobrança por sessão de IA
+
+Funcionalidades reais disponíveis desde planos iniciais
+
+Escalabilidade sem explosão de custos
