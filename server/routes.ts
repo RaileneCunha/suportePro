@@ -584,13 +584,18 @@ ${ticketContext}`;
 }
 
 async function seedDatabase() {
-  const articles = await storage.getArticles();
-  if (articles.length === 0) {
-     // Create a dummy user ID for seeding (this might fail foreign key constraints if user doesn't exist, 
-     // but Replit auth users are strings. We can't easily seed users without them logging in.
-     // So we'll skip seeding dependent data until a user exists, or just seed articles with a placeholder if allowed.
-     // Actually, articles require authorId. We can't seed them without a user.
-     // Let's just log a message.
-     console.log("Database empty. Log in to create initial data.");
+  try {
+    const articles = await storage.getArticles();
+    if (articles.length === 0) {
+       // Create a dummy user ID for seeding (this might fail foreign key constraints if user doesn't exist, 
+       // but Replit auth users are strings. We can't easily seed users without them logging in.
+       // So we'll skip seeding dependent data until a user exists, or just seed articles with a placeholder if allowed.
+       // Actually, articles require authorId. We can't seed them without a user.
+       // Let's just log a message.
+       console.log("Database empty. Log in to create initial data.");
+    }
+  } catch (error) {
+    console.error("[Seed] Error during database seeding:", error);
+    console.log("[Seed] Skipping seed operation. Database will be initialized on first use.");
   }
 }
