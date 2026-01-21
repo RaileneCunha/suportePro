@@ -1,7 +1,85 @@
 import express, { type Request, Response, NextFunction } from "express";
-// Use dynamic imports for server modules to avoid path issues in Vercel
-const getRegisterRoutes = () => import("../server/routes").then(m => m.registerRoutes);
-const getServeStatic = () => import("../server/static").then(m => m.serveStatic);
+import { fileURLToPath } from "url";
+import { dirname, resolve } from "path";
+
+// Get the directory of the current module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Use dynamic imports for server modules
+// Note: Vercel transpiles TS files and needs .js extension in imports
+const getRegisterRoutes = async () => {
+  // In Vercel, TypeScript files are transpiled, so we need to use .js extension
+  // Try different path formats that Vercel might use
+  const paths = [
+    "../server/routes.js",
+    "./server/routes.js",
+    "../server/routes",
+    "./server/routes",
+  ];
+  
+  for (const path of paths) {
+    try {
+      const module = await import(path);
+      if (module && module.registerRoutes) {
+        console.log(`[Init] Successfully imported routes from "${path}"`);
+        return module.registerRoutes;
+      }
+    } catch (err) {
+      const error = err instanceof Error ? err.message : String(err);
+      console.log(`[Init] Failed to import routes from "${path}":`, error);
+    }
+  }
+  
+  // Last attempt: try with absolute path resolution
+  try {
+    const fullPath = resolve(process.cwd(), "server", "routes.js");
+    const module = await import(fullPath);
+    if (module && module.registerRoutes) {
+      console.log(`[Init] Successfully imported routes from absolute path`);
+      return module.registerRoutes;
+    }
+  } catch (err) {
+    console.error("[Init] Failed to import routes from absolute path:", err instanceof Error ? err.message : err);
+  }
+  
+  throw new Error(`Failed to import registerRoutes from any path. Check that server/routes.ts exists and exports registerRoutes. Error details logged above.`);
+};
+
+const getServeStatic = async () => {
+  const paths = [
+    "../server/static.js",
+    "./server/static.js",
+    "../server/static",
+    "./server/static",
+  ];
+  
+  for (const path of paths) {
+    try {
+      const module = await import(path);
+      if (module && module.serveStatic) {
+        return module.serveStatic;
+      }
+    } catch (err) {
+      // Continue to next path
+    }
+  }
+  
+  // Last attempt: try with absolute path resolution
+  try {
+    const fullPath = resolve(process.cwd(), "server", "static.js");
+    const module = await import(fullPath);
+    if (module && module.serveStatic) {
+      return module.serveStatic;
+    }
+  } catch (err) {
+    // Ignore - serveStatic is optional
+  }
+  
+  // serveStatic is optional for Vercel (it handles static files)
+  console.log("[Init] serveStatic not available, using empty function");
+  return () => {};
+};
 
 const app = express();
 
